@@ -1,0 +1,11 @@
+function textToSnakeCase(text) {
+    return text
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '_')
+        .replace(/[^\w_]/g, '')
+        .replace(/_+/g, '_')
+        .replace(/^_|_$/g, '');
+}
+
+module.exports = textToSnakeCase;
