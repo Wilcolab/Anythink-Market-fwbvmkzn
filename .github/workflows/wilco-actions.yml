@@ -41,8 +41,14 @@ jobs:
         with:
           node-version: "16"
 
+      - name: Skip Wilco checks when WILCO_ENGINE_URL is not set
+        if: ${{ secrets.WILCO_ENGINE_URL == '' }}
+        run: |
+          echo "WILCO_ENGINE_URL secret not set; skipping Wilco checks"
+
       - name: Wilco checks
         id: Wilco
+        if: ${{ secrets.WILCO_ENGINE_URL != '' }}
         uses: trywilco/actions@main
         with:
           engine: ${{ secrets.WILCO_ENGINE_URL }}
